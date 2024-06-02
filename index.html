@@ -27,19 +27,21 @@
       <h2>Add Event</h2>
       <div class="input-container">
       <i class="fa-solid fa-calendar-plus icon1"></i>
-      <input type="text" class="event-name" placeholder="Event Name">
+      <input type="text" class="event-name" placeholder="Event Name" required>
       </div>
       <div class="input-container">
       <i class="fa-solid fa-user-tag icon2"></i>
-      <input type="text" class="organizer" placeholder="Event Organizer">
+      <input type="text" class="organizer" placeholder="Event Organizer" required>
       <div class="input-container">
       <div class="input-container">
-        <input type="text" class="event-date" placeholder="Select Date">
+        <input type="text" class="event-date" placeholder="Select Date" required>
         <i class="fas fa-calendar-alt calendar-icon"></i>
       </div>
       <button class="add-event" onclick="addEvent()">Add Event</button>
     </div>
-    <div class="events"></div>
+    <div class="events">
+
+    </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="main.js"></script>
