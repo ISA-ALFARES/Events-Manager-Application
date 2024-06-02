@@ -37,6 +37,19 @@ h1{
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+.input-container {
+  position: relative;
+  display: block;
+}
+.add-box .icon1,
+.add-box .icon2{
+  position: absolute;
+  right: 10px;
+  top: 17px;
+  cursor: pointer;
+  color: #888;
+
+}
 .add-box h2{
   color: var(--main-color);
   text-align: center;
@@ -88,10 +101,6 @@ opacity: 0;
 }
 .add-box .add-event:hover{
   background-color: rgba(0, 117, 255, 0.8);
-}
-.input-container {
-  position: relative;
-  display: block;
 }
 .event-date {
   width: 100%;
