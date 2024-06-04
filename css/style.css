@@ -130,6 +130,7 @@ h1{
 } 
 .events .event h3{
   color: var(--main-color);
+  text-align: center;
 }
 .events .event p{
   display: flex;
@@ -207,4 +208,3 @@ h1{
     
     /* Add more responsive styles as needed */
   }
-
