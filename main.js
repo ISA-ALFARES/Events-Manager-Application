@@ -1,14 +1,12 @@
-
-
-document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function() {
     flatpickr(".event-date", {
-      dateFormat: "Y-m-d",  // Set date format
-      minDate: new Date().toISOString().split("T")[0],  // Set minimum date
-      maxDate: "" // Set maximum date
-      // Additional options and customizations
-
+        enableTime: true,     
+        dateFormat: "Y-m-d H:i", 
+        minDate: new Date().toISOString().split("T")[0],   
+        time_24hr: true    
+        // Additional options and customizations
     });
-  });
+});
 
   function  addEvent() {
     const eventName = document.querySelector(".event-name").value; // Get event name
@@ -46,19 +44,33 @@ document.addEventListener("DOMContentLoaded", function() {
       events.forEach((event , index) => {
         const  now = new Date().getTime(); // Get current time
         const timeleft = event.timeStamp - now; // Calculate time left
-        const days = Math.floor(timeleft / (1000 * 60 * 60 * 24)); // Calculate days
-        const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60  * 60)); // Calculate hours
-        const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60)); // Calculate minutes
-        const seconds = Math.floor((timeleft % (1000 * 60)) / 1000); // Calculate seconds
-        eventsList.innerHTML += `
-        <div class="event">
-        <h3>${event.name}</h3>
-        <p><span>By:</span>${event.organizer}</p>
-        <p><span>On:</span>${event.date}</p>
-        <p><span>Time Left:</span>${days}d ${hours}h ${minutes}m  ${seconds}s </p>
-        <button onclick="deleteEvent(${index})">Delete</button>
-        </div>
-        `;
+
+
+        if (timeleft <= 0) {
+          eventsList.innerHTML += `
+          <div class="event">
+              <h3>${event.name}</h3>
+              <p><span>By:</span>${event.organizer}</p>
+              <p><span>On:</span>${event.date}</p>
+              <p><span>Time Left:</span> <span class="active">Event has passed</span></p>
+              <button onclick="deleteEvent(${index})">Delete</button>
+          </div>
+          `;
+        }else{
+            const days = Math.floor(timeleft / (1000 * 60 * 60 * 24)); // Calculate days
+            const hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60  * 60)); // Calculate hours
+            const minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60)); // Calculate minutes
+            const seconds = Math.floor((timeleft % (1000 * 60)) / 1000); // Calculate seconds
+            eventsList.innerHTML += `
+            <div class="event">
+            <h3>${event.name}</h3>
+            <p><span>By:</span>${event.organizer}</p>
+            <p><span>On:</span>${event.date}</p>
+            <p><span>Time Left:</span>${days}d ${hours}h ${minutes}m  ${seconds}s </p>
+            <button onclick="deleteEvent(${index})">Delete</button>
+            </div>
+            `;
+          }
       });
     }
     setInterval(displayEvents, 1000);
